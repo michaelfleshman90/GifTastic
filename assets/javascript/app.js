@@ -14,6 +14,21 @@ function getGiphy(event) {
       method: "GET"
     }).then(function(response) {
       console.log(response);
+      for (var i = 0; i < results.length; i++) {
+
+        var imageDiv = $("<div>");
+
+        var p = $("<p>").text("Rating: " + results[i].rating);
+
+        var gif = $("<img>");
+        
+        gif.attr("src", results[i].images.fixed_height.url);
+
+        imageDiv.append(p);
+        imageDiv.append(gif);
+
+        $("#gifDiv").prepend(imageDiv);
+      }
     });
 }
 
@@ -49,7 +64,10 @@ function load(){
     userSubmit.attr("type","text");
     userSubmit.addClass("usertext");
     $(".userInput").append(user,$("<br>"),userSubmit,$("<br>"),button);
-    $(document.body).on("click",".button", getGiphy);
+    $(document.body).on("click",".button", getGiphy());
+
+    
+    
 
 
     
